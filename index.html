@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UP LMS - Empower Teams with Smarter Learning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        /* --- General Setup & Variables --- */
+        :root {
+            --primary-color: #01DBC8;
+            --dark-color: #212529;
+            --text-color: #6c757d;
+            --light-gray-color: #f8f9fa;
+            --white-color: #ffffff;
+            --border-color: #e9ecef;
+            --header-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: radial-gradient(ellipse at top, #e6fffd 0%, var(--white-color) 60%);
+        }
+
+        .container { 
+            max-width: 1140px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        
+        h1, h2, h3, h4, strong { 
+            color: var(--dark-color); 
+            font-weight: 600; 
+        }
+        
+        .section { 
+            padding: 60px 0; 
+            background-color: var(--white-color); 
+        }
+        
+        #features, #pricing { 
+            background-color: var(--light-gray-color); 
+        }
+        
+        .section-title { 
+            font-size: 36px; 
+            margin-bottom: 8px; 
+            text-align: center; 
+        }
+        
+        .section-subtitle { 
+            max-width: 500px; 
+            margin: 0 auto 48px auto; 
+            text-align: center; 
+        }
+        
+        .highlight { 
+            color: var(--primary-color); 
+        }
+
+        .btn { 
+            display: inline-block; 
+            padding: 12px 28px; 
+            border-radius: 8px; 
+            font-weight: 500; 
+            text-decoration: none; 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+            border: none; 
+        }
+        
+        .btn-primary { 
+            background-color: var(--primary-color); 
+            color: var(--white-color); 
+        }
+        
+        .btn-primary:hover { 
+            background-color: #01b8a7; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(1, 219, 200, 0.3); 
+        }
+        
+        .btn-light { 
+            background-color: var(--white-color); 
+            color: var(--primary-color); 
+        }
+        
+        .btn-light:hover { 
+            background-color: #f0f0f0; 
+        }
+        
+        .btn-text { 
+            color: var(--primary-color); 
+            font-weight: 500; 
+            text-decoration: none; 
+        }
+        
+        .btn-outline { 
+            background-color: transparent; 
+            color: var(--text-color); 
+            border: 1px solid var(--border-color); 
+        }
+        
+        .btn-outline:hover { 
+            background-color: var(--light-gray-color); 
+            color: var(--dark-color); 
+        }
+
+        /* --- Floating Header --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+        }
+        
+        .floating-nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            text-decoration: none; 
+            font-size: 20px; 
+            font-weight: 700; 
+            color: var(--dark-color); 
+            margin: 0 16px; 
+        }
+        
+        .logo i { 
+            color: var(--primary-color); 
+            margin-right: 8px; 
+            font-size: 24px; 
+        }
+        
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 8px; 
+            background-color: rgba(230, 230, 230, 0.3); 
+            border-radius: 999px; 
+            padding: 4px; 
+        }
+        
+        .nav-links a { 
+            padding: 8px 20px; 
+            text-decoration: none; 
+            color: var(--text-color); 
+            font-weight: 500; 
+            border-radius: 999px; 
+            transition: all 0.3s ease; 
+        }
+        
+        .nav-links a:hover { 
+            color: var(--dark-color); 
+        }
+        
+        .nav-links a.active { 
+            background-color: var(--white-color); 
+            color: var(--dark-color); 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08); 
+        }
+        
+        .lang-switcher { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            cursor: pointer; 
+            padding: 8px 16px; 
+            margin-left: 16px; 
+            background-color: var(--white-color); 
+            border-radius: 999px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08); 
+        }
+        
+        .nav-item-dropdown { 
+            position: relative; 
+        }
+        
+        .dropdown-menu { 
+            position: absolute; 
+            top: 110%; 
+            left: 0; 
+            background-color: var(--white-color); 
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            list-style: none; 
+            padding: 8px 0; 
+            min-width: 160px; 
+            opacity: 0; 
+            visibility: hidden; 
+            transform: translateY(10px); 
+            transition: all 0.3s ease; 
+        }
+        
+        .nav-item-dropdown:hover .dropdown-menu { 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateY(0); 
+        }
+        
+        .dropdown-menu a { 
+            display: block; 
+            padding: 8px 16px; 
+            border-radius: 0; 
+        }
+
+        /* --- Hero Section --- */
+        .hero { 
+            text-align: center; 
+            padding: 120px 0 80px; 
+            margin-bottom: 20px; 
+            background-color: transparent; 
+        }
+        
+        .hero h1 { 
+            font-size: 56px; 
+            line-height: 1.2; 
+            max-width: 700px; 
+            margin: 0 auto 24px auto; 
+        }
+        
+        .hero .btn { 
+            font-size: 16px; 
+        }
+
+        /* --- Sub-Hero Section --- */
+        .sub-hero { 
+            margin-top: -80px; 
+            background-color: transparent; 
+        }
+        
+        .sub-hero-card { 
+            background-color: var(--white-color); 
+            padding: 32px; 
+            border-radius: 24px; 
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07); 
+            border: 1px solid var(--border-color); 
+        }
+        
+        .sub-hero-content { 
+            display: grid; 
+            grid-template-columns: 1.2fr 2fr 1.5fr; 
+            align-items: center; 
+            gap: 24px; 
+            padding-bottom: 24px; 
+            margin-bottom: 24px; 
+            border-bottom: 1px solid var(--border-color); 
+        }
+        
+        .sub-hero-text h3 { 
+            font-size: 20px; 
+            font-weight: 600; 
+            line-height: 1.3; 
+        }
+        
+        .green-line { 
+            width: 40px; 
+            height: 3px; 
+            background-color: var(--primary-color); 
+            margin-top: 8px; 
+        }
+        
+        .app-stores { 
+            text-align: right; 
+        }
+        
+        .app-stores p { 
+            font-weight: 500; 
+            font-size: 14px; 
+            margin-bottom: 8px; 
+            color: var(--dark-color); 
+        }
+        
+        .app-stores a img { 
+            height: 40px; 
+            margin-left: 10px;
+        }
+        
+        .client-logos { 
+            display: flex; 
+            justify-content: space-around; 
+            align-items: center; 
+            filter: grayscale(100%); 
+            opacity: 0.5; 
+        }
+        
+        .client-logos img { 
+            height: 25px; 
+            object-fit: contain;
+        }
+
+        /* --- Features Section --- */
+        .features-header { 
+            margin-bottom: 48px; 
+        }
+        
+        .features-header .section-subtitle { 
+            max-width: 600px; 
+        }
+        
+        .features-grid { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 20px; 
+            position: relative; 
+        }
+        
+        .feature-card { 
+            padding: 32px; 
+            background-color: var(--white-color); 
+            border-radius: 20px; 
+            border: 1px solid var(--border-color); 
+            width: 320px; 
+            transition: all 0.4s ease; 
+            text-align: left; 
+        }
+        
+        .feature-card.active { 
+            background-color: var(--primary-color); 
+            color: var(--white-color); 
+            transform: scale(1.08); 
+            box-shadow: 0 10px 30px rgba(1, 219, 200, 0.3); 
+            z-index: 10; 
+        }
+        
+        .feature-card.active h3, 
+        .feature-card.active p, 
+        .feature-card.active .feature-icon { 
+            color: var(--white-color); 
+        }
+        
+        .feature-card.active .btn { 
+            background-color: var(--white-color); 
+            color: var(--primary-color); 
+        }
+        
+        .feature-icon { 
+            width: 48px; 
+            height: 48px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background-color: #e6fcf9; 
+            color: var(--primary-color); 
+            font-size: 24px; 
+            margin-bottom: 16px; 
+        }
+        
+        .feature-card.active .feature-icon { 
+            background-color: rgba(255,255,255,0.2); 
+        }
+        
+        .feature-card h3 { 
+            font-size: 18px; 
+            margin-bottom: 8px; 
+        }
+        
+        .feature-nav-arrow { 
+            color: var(--text-color); 
+            font-size: 24px; 
+            cursor: pointer; 
+            padding: 10px; 
+        }
+
+        /* --- Seamless Learning Section (Equal Height Cards) --- */
+        .seamless-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px; 
+            align-items: stretch; 
+        }
+        
+        .seamless-card { 
+            background-color: var(--light-gray-color); 
+            padding: 40px; 
+            border-radius: 24px; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        .seamless-card h3 { 
+            font-size: 22px; 
+            margin-bottom: 8px; 
+        }
+        
+        .seamless-card p { 
+            margin-bottom: 16px; 
+        }
+        
+        .employee-list { 
+            margin-top: 24px; 
+        }
+        
+        .employee-item { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 12px 0; 
+            border-bottom: 1px solid var(--border-color); 
+        }
+        
+        .employee-item:last-child { 
+            border: none; 
+        }
+        
+        .employee-info { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+        
+        .employee-info img { 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+        }
+        
+        .employee-info div { 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        .employee-info small { 
+            color: var(--text-color); 
+        }
+        
+        .call-btn { 
+            width: 36px; 
+            height: 36px; 
+            border-radius: 50%; 
+            background-color: var(--primary-color); 
+            color: var(--white-color); 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-decoration: none; 
+            font-size: 18px; 
+        }
+
+        /* --- Pricing Section --- */
+        .pricing-toggle { 
+            display: flex; 
+            justify-content: center; 
+            margin-bottom: 48px; 
+        }
+        
+        .toggle-switch { 
+            background-color: var(--white-color); 
+            padding: 6px; 
+            border-radius: 12px; 
+            display: flex; 
+            gap: 8px; 
+            border: 1px solid var(--border-color); 
+        }
+        
+        .toggle-btn { 
+            padding: 8px 24px; 
+            border-radius: 8px; 
+            font-weight: 500; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+        }
+        
+        .toggle-btn.active { 
+            background-color: var(--primary-color); 
+            color: var(--white-color); 
+            box-shadow: 0 4px 10px rgba(1, 219, 200, 0.3); 
+        }
+        
+        .pricing-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 30px; 
+        }
+        
+        .pricing-card { 
+            background-color: var(--white-color); 
+            padding: 40px; 
+            border-radius: 16px; 
+            border: 1px solid var(--border-color); 
+            text-align: center; 
+        }
+        
+        .pricing-card h3 { 
+            font-size: 22px; 
+            margin-bottom: 16px; 
+        }
+        
+        .price { 
+            font-size: 48px; 
+            font-weight: 700; 
+            color: var(--dark-color); 
+            margin-bottom: 8px; 
+        }
+        
+        .price .strikethrough { 
+            font-size: 24px; 
+            color: var(--text-color); 
+            text-decoration: line-through; 
+            margin-left: 8px; 
+        }
+        
+        .pricing-card .btn { 
+            margin: 24px 0; 
+            width: 100%; 
+        }
+        
+        .features-list { 
+            list-style: none; 
+            text-align: left; 
+        }
+        
+        .features-list li { 
+            margin-bottom: 12px; 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 12px; 
+        }
+        
+        .features-list i { 
+            color: var(--primary-color); 
+            font-size: 20px; 
+            margin-top: 2px; 
+            flex-shrink: 0; 
+        }
+
+        /* --- Phone Mockup Styles --- */
+        .phone-mockup { 
+            background-color: var(--dark-color); 
+            border-radius: 40px; 
+            padding: 12px; 
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.2); 
+            margin-top: auto; 
+        }
+        
+        .phone-screen { 
+            background-color: var(--white-color); 
+            border-radius: 30px; 
+            height: 500px; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        .phone-status-bar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 12px 20px 8px; 
+            font-size: 12px; 
+            font-weight: 600; 
+            color: var(--dark-color); 
+        }
+        
+        .phone-status-bar div { 
+            display: flex; 
+            gap: 5px; 
+        }
+        
+        .phone-content { 
+            padding: 0 20px; 
+            flex-grow: 1; 
+        }
+        
+        .phone-content-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin: 16px 0; 
+        }
+        
+        .phone-content-header h4 { 
+            font-size: 16px; 
+        }
+        
+        .phone-content-header span { 
+            font-size: 12px; 
+            cursor: pointer; 
+        }
+
+        /* Bar Chart inside Mockup */
+        .bar-chart { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+            height: 250px; 
+            padding-top: 40px; 
+        }
+        
+        .bar-wrapper { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-end; 
+            position: relative; 
+        }
+        
+        .bar-wrapper span { 
+            font-size: 10px; 
+            margin-top: 5px; 
+        }
+        
+        .bar { 
+            width: 60%; 
+            background-color: var(--primary-color); 
+            opacity: 0.2; 
+            border-radius: 4px 4px 0 0; 
+            transition: all 0.3s ease; 
+        }
+        
+        .bar-wrapper.active .bar { 
+            opacity: 1; 
+        }
+        
+        .tooltip { 
+            position: absolute; 
+            top: -10px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            background: var(--dark-color); 
+            color: var(--white-color); 
+            padding: 5px 10px; 
+            border-radius: 6px; 
+            font-size: 10px; 
+            text-align: center; 
+            white-space: nowrap; 
+            opacity: 0; 
+            transition: opacity 0.3s; 
+        }
+        
+        .bar-wrapper.active .tooltip { 
+            opacity: 1; 
+        }
+
+        /* --- CTA Banners --- */
+        .cta-banner-green { 
+            background-color: var(--primary-color); 
+            color: var(--white-color); 
+            border-radius: 24px; 
+            padding: 40px 60px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .cta-banner-green h3, 
+        .cta-banner-green li { 
+            color: var(--white-color); 
+        }
+        
+        .cta-banner-green h3 { 
+            font-size: 24px; 
+            margin-bottom: 24px; 
+        }
+        
+        .cta-banner-green ul { 
+            list-style: none; 
+        }
+        
+        .cta-banner-green li { 
+            margin-bottom: 12px; 
+            display: flex; 
+            align-items: center; 
+        }
+        
+        .cta-banner-green li i { 
+            margin-right: 12px; 
+            font-size: 20px; 
+        }
+        
+        .cta-banner-green .btn { 
+            margin-top: 24px; 
+        }
+        
+        .cta-illustration { 
+            max-width: 250px; 
+        }
+
+        .final-cta { 
+            background-color: var(--dark-color); 
+            border-radius: 24px; 
+            padding: 60px; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            align-items: center; 
+            position: relative; 
+            overflow: hidden; 
+            min-height: 400px; 
+        }
+        
+        .final-cta-text h2 { 
+            font-size: 40px; 
+            color: var(--white-color); 
+            margin-bottom: 24px; 
+            line-height: 1.3; 
+        }
+        
+        .final-cta-graphics { 
+            position: absolute; 
+            right: 0; 
+            top: 0; 
+            bottom: 0; 
+            width: 50%; 
+            background-image: repeating-linear-gradient(135deg, #012824, #012824 20px, transparent 20px, transparent 40px); 
+            opacity: 0.5; 
+        }
+        
+        .final-cta-graphics .phone-mockup { 
+            position: absolute; 
+            transform-origin: bottom center; 
+        }
+        
+        .final-cta-graphics .phone-1 { 
+            transform: rotate(-10deg) scale(0.8); 
+            top: 20px; 
+            right: 120px; 
+        }
+        
+        .final-cta-graphics .phone-2 { 
+            transform: rotate(10deg) scale(0.8); 
+            top: 60px; 
+            right: 0; 
+            z-index: 2; 
+        }
+        
+        .bar-chart.small-chart { 
+            height: 150px; 
+        }
+        
+        .tooltip.small { 
+            top: -25px; 
+            padding: 2px 6px; 
+        }
+        
+        .task-card { 
+            background-color: #f1f1f1; 
+            border-radius: 12px; 
+            padding: 16px; 
+            text-align: center; 
+            margin-top: 20px; 
+        }
+        
+        .task-card strong { 
+            font-size: 14px; 
+        }
+        
+        .task-card p { 
+            font-size: 12px; 
+            margin: 4px 0 12px 0; 
+        }
+        
+        .progress-bar { 
+            height: 5px; 
+            background-color: #ddd; 
+            border-radius: 5px; 
+            overflow: hidden; 
+        }
+        
+        .progress { 
+            width: 75%; 
+            height: 100%; 
+            background-color: var(--primary-color); 
+        }
+        
+        .task-card button { 
+            width: 100%; 
+            padding: 8px; 
+            border-radius: 8px; 
+            background-color: var(--dark-color); 
+            color: var(--white-color); 
+            border: none; 
+            margin-top: 12px; 
+            font-weight: 500; 
+        }
+
+        /* --- Schedule Modal --- */
+        .modal-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(5px); 
+            z-index: 2000; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: all 0.3s ease-in-out; 
+        }
+        
+        .modal-overlay.active { 
+            opacity: 1; 
+            visibility: visible; 
+        }
+        
+        .modal-content { 
+            background-color: var(--white-color); 
+            padding: 40px; 
+            border-radius: 24px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+            width: 90%; 
+            max-width: 800px; 
+            position: relative; 
+            transform: scale(0.95); 
+            transition: all 0.3s ease-in-out; 
+        }
+        
+        .modal-overlay.active .modal-content { 
+            transform: scale(1); 
+        }
+        
+        .modal-close-btn { 
+            position: absolute; 
+            top: 20px; 
+            right: 20px; 
+            font-size: 28px; 
+            color: var(--text-color); 
+            cursor: pointer; 
+        }
+        
+        .schedule-container { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 40px; 
+        }
+        
+        .schedule-container h3 { 
+            grid-column: 1 / -1; 
+            text-align: center; 
+            margin-bottom: 10px; 
+        }
+        
+        .time-slots { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            margin-bottom: 20px; 
+        }
+        
+        .time-slots label { 
+            padding: 10px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+        }
+        
+        .time-slots input:checked + label { 
+            background-color: var(--primary-color); 
+            color: var(--white-color); 
+            border-color: var(--primary-color); 
+        }
+        
+        .time-slots input { 
+            display: none; 
+        }
+        
+        .details-title { 
+            margin-top: 20px; 
+        }
+        
+        .form-group { 
+            margin-bottom: 15px; 
+        }
+        
+        .form-group label { 
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: 500; 
+            font-size: 14px; 
+        }
+        
+        .form-group input { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+        }
+        
+        .details-section .btn { 
+            width: 100%; 
+            margin-top: 10px; 
+        }
+
+        /* Flatpickr Calendar Customization */
+        #calendar-container { 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
+            border-radius: 12px; 
+            padding: 10px; 
+        }
+        
+        .flatpickr-calendar { 
+            box-shadow: none !important; 
+            width: 100% !important; 
+            background: transparent !important; 
+            border: none; 
+        }
+        
+        .flatpickr-day.selected { 
+            background: var(--primary-color); 
+            border-color: var(--primary-color); 
+        }
+        
+        .flatpickr-day.today { 
+            border-color: var(--primary-color); 
+            color: var(--primary-color); 
+        }
+
+        /* Scroll Animation */
+        .fade-in { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+        }
+        
+        .fade-in.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* Footer */
+        .footer { 
+            padding: 20px 0; 
+            background-color: var(--white-color); 
+            border-top: 1px solid var(--border-color); 
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .sub-hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .green-line {
+                margin: 8px auto;
+            }
+            
+            .app-stores {
+                text-align: center;
+                margin-top: 20px;
+            }
+            
+            .seamless-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .schedule-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .final-cta {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .final-cta-graphics {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .floating-nav {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+            }
+            
+            .nav-links {
+                margin: 15px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .features-grid {
+                flex-direction: column;
+            }
+            
+            .feature-card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .cta-banner-green {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px;
+            }
+            
+            .cta-illustration {
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .sub-hero {
+                margin-top: -40px;
+            }
+            
+            .phone-mockup {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="floating-nav">
+                <a href="#" class="logo"><i class='bx bxs-leaf'></i> UP LMS</a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#" id="schedule-link">Schedule</a></li>
+                        <li class="nav-item-dropdown">
+                            <a href="#">More <i class='bx bx-chevron-down'></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Company Info</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="lang-switcher">
+                    <img src="https://flagcdn.com/gb.svg" width="20" alt="EN"> EN <i class='bx bx-chevron-down'></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container fade-in">
+                <h1>Empower teams with <br> <span class="highlight">smarter learning.</span></h1>
+                <a href="#pricing" class="btn btn-primary">Start Learning</a>
+            </div>
+        </section>
+
+        <!-- Sub-Hero Section -->
+        <section class="sub-hero">
+            <div class="container fade-in">
+                <div class="sub-hero-card">
+                    <div class="sub-hero-content">
+                        <div class="sub-hero-text">
+                            <h3>Unify all aspects of learning management</h3>
+                            <div class="green-line"></div>
+                        </div>
+                        <p>Deliver training, track progress, boost engagement, and measure performance.</p>
+                        <div class="app-stores">
+                            <p>Available for download</p>
+                            <div>
+                                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="Google Play"></a>
+                                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/2560px-Download_on_the_App_Store_Badge.svg.png" alt="App Store"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="client-logos">
+                        <img src="https://cdn.worldvectorlogo.com/logos/agrium.svg" alt="Agrium">
+                        <img src="https://i.imgur.com/u7fLwTj.png" alt="Chart" style="height:35px;">
+                        <img src="https://cdn.worldvectorlogo.com/logos/motul-1.svg" alt="Motul">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Ziebart_logo.svg" alt="Ziebart">
+                        <img src="https://cdn.worldvectorlogo.com/logos/casappa.svg" alt="Casappa">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="container fade-in">
+                <div class="features-header">
+                    <h2 class="section-title">Upgrade your <span class="highlight">training</span></h2>
+                    <p class="section-subtitle">We provide your teams with the LMS tools and communication they need to improve skills and drive growth.</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-nav-arrow" id="feature-prev"><i class='bx bx-left-arrow-alt'></i></div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class='bx bx-time-five'></i></div>
+                        <h3>Real-time insights</h3>
+                        <p>Track learning results instantly and get actionable insights.</p>
+                    </div>
+                    <div class="feature-card active">
+                        <div class="feature-icon"><i class='bx bx-user-check'></i></div>
+                        <h3>Personalized learning</h3>
+                        <p>Easily deliver tailored training paths with automation.</p>
+                        <a href="#pricing" class="btn">Get Started</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class='bx bxs-star'></i></div>
+                        <h3>Highly engaging</h3>
+                        <p>Boost participation with targeted content delivery.</p>
+                    </div>
+                    <div class="feature-nav-arrow" id="feature-next"><i class='bx bx-right-arrow-alt'></i></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seamless Learning Section -->
+        <section class="section">
+            <div class="container fade-in">
+                <h2 class="section-title">We make learning <span class="highlight">seamless</span></h2>
+                <p class="section-subtitle">Explore the wide range of powerful tools that enhance productivity and drive success.</p>
+                
+                <div class="seamless-grid">
+                    <div class="seamless-card left-card fade-in">
+                        <h3>Stay connected with your team</h3>
+                        <p>Share updates, news, and training alerts with your staff.</p>
+                        <a href="#" class="btn-text">Try now</a>
+                        <div class="employee-list">
+                            <div class="employee-item"><div class="employee-info"><img src="https://i.pravatar.cc/150?img=1" alt="Employee"><div><strong>Heri Maguire</strong><small>San Francisco, CA</small></div></div><a href="#" class="call-btn"><i class='bx bxs-phone'></i></a></div>
+                            <div class="employee-item"><div class="employee-info"><img src="https://i.pravatar.cc/150?img=2" alt="Employee"><div><strong>Omar Marcus</strong><small>Manchester, Inggris</small></div></div><a href="#" class="call-btn"><i class='bx bxs-phone'></i></a></div>
+                            <div class="employee-item"><div class="employee-info"><img src="https://i.pravatar.cc/150?img=3" alt="Employee"><div><strong>Adam Levana</strong><small>Washington, US</small></div></div><a href="#" class="call-btn"><i class='bx bxs-phone'></i></a></div>
+                            <div class="employee-item"><div class="employee-info"><img src="https://i.pravatar.cc/150?img=4" alt="Employee"><div><strong>Abdul Weah</strong><small>San Francisco, CA</small></div></div><a href="#" class="call-btn"><i class='bx bxs-phone'></i></a></div>
+                        </div>
+                    </div>
+                    <div class="seamless-card right-card fade-in" style="transition-delay: 0.2s;">
+                         <h3>Monitor learning analytics</h3>
+                        <p>Easily track course activity and assess progress.</p>
+                        <a href="#" class="btn-text">Try now</a>
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="phone-status-bar"><span>9:41</span><div><i class='bx bx-wifi'></i><i class='bx bxs-battery'></i></div></div>
+                                <div class="phone-content">
+                                    <div class="phone-content-header"><h4>Enrollment statistic</h4><span>Jan - Jun <i class='bx bx-chevron-down'></i></span></div>
+                                    <div class="bar-chart">
+                                        <div class="bar-wrapper"><div class="bar" style="height: 40%;"></div><span>Jan</span></div>
+                                        <div class="bar-wrapper"><div class="bar" style="height: 60%;"></div><span>Feb</span></div>
+                                        <div class="bar-wrapper"><div class="bar" style="height: 50%;"></div><span>Mar</span></div>
+                                        <div class="bar-wrapper active"><div class="bar" style="height: 90%;"></div><span>May</span><div class="tooltip">Front End<br><strong>589</strong></div></div>
+                                        <div class="bar-wrapper"><div class="bar" style="height: 80%;"></div><span>Apr</span></div>
+                                        <div class="bar-wrapper"><div class="bar" style="height: 70%;"></div><span>Jun</span></div>
+                                        <div class="bar-wrapper"><div class="bar" style="height: 55%;"></div><span>Jul</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="section" id="pricing">
+            <div class="container fade-in">
+                <h2 class="section-title">Flexible LMS <span class="highlight">pricing plans</span></h2>
+                <p class="section-subtitle">Select the ideal plan that aligns with your organization's size and needs.</p>
+                <div class="pricing-toggle">
+                    <div class="toggle-switch">
+                        <div class="toggle-btn" id="monthly-toggle">Monthly -15%</div>
+                        <div class="toggle-btn active" id="yearly-toggle">Yearly</div>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Starter</h3>
+                        <div class="price" id="starter-price">$14.00 <span class="strikethrough">$24.00</span></div>
+                        <a href="#" class="btn btn-outline">Get Started</a>
+                        <ul class="features-list">
+                            <li><i class='bx bx-check-circle'></i>Basic LMS features to manage courses and attendance.</li>
+                            <li><i class='bx bx-check-circle'></i>Suitable for teams with a limited training requirement.</li>
+                            <li><i class='bx bx-check-circle'></i>Access to essential analytics.</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Pro</h3>
+                        <div class="price" id="pro-price">$55.00 <span class="strikethrough">$75.00</span></div>
+                        <a href="#" class="btn btn-outline">Get Started</a>
+                         <ul class="features-list">
+                            <li><i class='bx bx-check-circle'></i>Advanced tools for learning progress tracking and engagement.</li>
+                            <li><i class='bx bx-check-circle'></i>Customizable learning reports.</li>
+                            <li><i class='bx bx-check-circle'></i>Tools for onboarding and upskilling.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banners -->
+        <section class="section">
+            <div class="container">
+                <div class="cta-banner-green fade-in">
+                    <div class="cta-text-content">
+                        <h3>Hurry check! There's something<br>new in the custom plan ✨</h3>
+                        <ul>
+                            <li><i class='bx bx-check-circle'></i> 24/7 priority customer services</li>
+                            <li><i class='bx bx-check-circle'></i> Boost security</li>
+                            <li><i class='bx bx-check-circle'></i> More expensive</li>
+                        </ul>
+                        <a href="#" class="btn btn-light">See all details</a>
+                    </div>
+                    <img src="https://i.imgur.com/uPqQG5X.png" alt="Team working" class="cta-illustration">
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="final-cta fade-in">
+                    <div class="final-cta-text">
+                        <h2>Trust us, learning will<br>be much easier</h2>
+                        <a href="#" class="btn btn-light">Get the LMS</a>
+                    </div>
+                    <div class="final-cta-graphics">
+                        <div class="phone-mockup phone-1">
+                             <div class="phone-screen">
+                                <div class="phone-status-bar"><span>9:41</span><div><i class='bx bx-wifi'></i><i class='bx bxs-battery'></i></div></div>
+                                 <div class="phone-content">
+                                    <div class="phone-content-header"><h4>Enrollment statistic</h4></div>
+                                    <div class="bar-chart small-chart">
+                                        <div class="bar-wrapper"><div class="bar" style="height: 40%;"></div></div>
+                                        <div class="bar-wrapper"><div class="bar" style="height: 60%;"></div></div>
+                                        <div class="bar-wrapper"><div class="bar" style="height: 50%;"></div></div>
+                                        <div class="bar-wrapper active"><div class="bar" style="height: 90%;"></div><div class="tooltip small"><strong>203</strong></div></div>
+                                        <div class="bar-wrapper"><div class="bar" style="height: 70%;"></div></div>
+                                        <div class="bar-wrapper"><div class="bar" style="height: 55%;"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="phone-mockup phone-2">
+                             <div class="phone-screen">
+                                <div class="phone-status-bar"><span>9:41</span><div><i class='bx bx-wifi'></i><i class='bx bxs-battery'></i></div></div>
+                                <div class="phone-content">
+                                     <div class="phone-content-header"><h4>My Task</h4></div>
+                                     <div class="task-card">
+                                         <strong>Complete your task</strong>
+                                         <p>2 New task is available</p>
+                                         <div class="progress-bar"><div class="progress"></div></div>
+                                         <button>Today</button>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div class="modal-overlay" id="schedule-modal">
+        <div class="modal-content">
+            <i class='bx bx-x modal-close-btn' id="modal-close"></i>
+            <div class="schedule-container">
+                <h3>Schedule a Demo</h3>
+                <div class="calendar-section">
+                    <h4>1. Select a Date</h4>
+                    <div id="calendar-container"></div>
+                </div>
+                <div class="details-section">
+                    <h4>2. Select a Time</h4>
+                    <div class="time-slots">
+                        <input type="radio" name="time" id="time1" value="09:00"><label for="time1">09:00 AM</label>
+                        <input type="radio" name="time" id="time2" value="10:00"><label for="time2">10:00 AM</label>
+                        <input type="radio" name="time" id="time3" value="11:00"><label for="time3">11:00 AM</label>
+                        <input type="radio" name="time" id="time4" value="02:00"><label for="time4">02:00 PM</label>
+                        <input type="radio" name="time" id="time5" value="03:00"><label for="time5">03:00 PM</label>
+                        <input type="radio" name="time" id="time6" value="04:00"><label for="time6">04:00 PM</label>
+                    </div>
+                    <h4 class="details-title">3. Enter Your Details</h4>
+                    <form id="booking-form">
+                        <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" required></div>
+                        <div class="form-group"><label for="position">Position</label><input type="text" id="position" required></div>
+                        <div class="form-group"><label for="company">Company</label><input type="text" id="company" required></div>
+                        <button type="submit" class="btn btn-primary">Submit Booking</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+           <p style="text-align:center; padding: 20px 0; border-top: 1px solid #e0e0e0;">&copy; 2023 UP LMS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Scroll Fade-in Animation ---
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+            
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // --- Schedule Modal Logic ---
+            const scheduleLink = document.getElementById('schedule-link');
+            const modal = document.getElementById('schedule-modal');
+            const closeModalBtn = document.getElementById('modal-close');
+            let calendarInstance = null;
+
+            function openModal() {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                if (!calendarInstance) {
+                    calendarInstance = flatpickr("#calendar-container", {
+                        inline: true,
+                        minDate: "today",
+                        dateFormat: "Y-m-d",
+                    });
+                }
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            scheduleLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+
+            closeModalBtn.addEventListener('click', closeModal);
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // --- Booking Form Submission ---
+            const bookingForm = document.getElementById('booking-form');
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!calendarInstance || calendarInstance.selectedDates.length === 0) {
+                    alert("Please select a date from the calendar.");
+                    return;
+                }
+                
+                const date = calendarInstance.selectedDates[0].toLocaleDateString('en-US', {
+                    year: 'numeric', month: 'long', day: 'numeric'
+                });
+
+                const timeEl = document.querySelector('input[name="time"]:checked');
+                if (!timeEl) {
+                    alert("Please select a time slot.");
+                    return;
+                }
+                const time = timeEl.value;
+                
+                const name = document.getElementById('name').value;
+                
+                alert(`Thank you, ${name}!\n\nYour demo has been confirmed for:\nDate: ${date}\nTime: ${time}`);
+                
+                closeModal();
+                bookingForm.reset();
+                calendarInstance.clear();
+                document.querySelectorAll('input[name="time"]').forEach(radio => radio.checked = false);
+            });
+
+            // --- Pricing Toggle ---
+            const monthlyToggle = document.getElementById('monthly-toggle');
+            const yearlyToggle = document.getElementById('yearly-toggle');
+            const starterPrice = document.getElementById('starter-price');
+            const proPrice = document.getElementById('pro-price');
+
+            monthlyToggle.addEventListener('click', function() {
+                if (!this.classList.contains('active')) {
+                    this.classList.add('active');
+                    yearlyToggle.classList.remove('active');
+                    
+                    // Update prices for monthly
+                    starterPrice.innerHTML = '$24.00 <span class="strikethrough">$28.00</span>';
+                    proPrice.innerHTML = '$75.00 <span class="strikethrough">$88.00</span>';
+                }
+            });
+
+            yearlyToggle.addEventListener('click', function() {
+                if (!this.classList.contains('active')) {
+                    this.classList.add('active');
+                    monthlyToggle.classList.remove('active');
+                    
+                    // Update prices for yearly
+                    starterPrice.innerHTML = '$14.00 <span class="strikethrough">$24.00</span>';
+                    proPrice.innerHTML = '$55.00 <span class="strikethrough">$75.00</span>';
+                }
+            });
+
+            // --- Feature Carousel Navigation ---
+            const featurePrev = document.getElementById('feature-prev');
+            const featureNext = document.getElementById('feature-next');
+            const featureCards = document.querySelectorAll('.feature-card');
+
+            featureNext.addEventListener('click', function() {
+                const activeCard = document.querySelector('.feature-card.active');
+                const nextCard = activeCard.nextElementSibling || featureCards[0];
+                
+                if (nextCard && nextCard.classList.contains('feature-card')) {
+                    activeCard.classList.remove('active');
+                    nextCard.classList.add('active');
+                }
+            });
+
+            featurePrev.addEventListener('click', function() {
+                const activeCard = document.querySelector('.feature-card.active');
+                const prevCard = activeCard.previousElementSibling || featureCards[featureCards.length - 1];
+                
+                if (prevCard && prevCard.classList.contains('feature-card')) {
+                    activeCard.classList.remove('active');
+                    prevCard.classList.add('active');
+                }
+            });
+
+            // --- Dropdown Menu for Mobile ---
+            const dropdownToggle = document.querySelector('.nav-item-dropdown > a');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            dropdownToggle.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.nav-item-dropdown') && window.innerWidth <= 768) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
